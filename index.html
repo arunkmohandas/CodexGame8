@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canvas Platformer Adventure</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <h1 class="title">Canvas Platformer Adventure</h1>
+
+    <div id="hud" class="hud hidden" aria-live="polite">
+      <span>Score: <strong id="scoreValue">0</strong></span>
+      <span>Lives: <strong id="livesValue">3</strong></span>
+      <span>Level: <strong id="levelValue">1</strong></span>
+      <button id="pauseBtn" class="tiny-btn">Pause</button>
+    </div>
+
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas" width="960" height="540"></canvas>
+
+      <section id="mainMenu" class="overlay visible">
+        <h2>Main Menu</h2>
+        <button id="startBtn">Start Game</button>
+        <button id="levelSelectBtn">Level Select</button>
+        <button id="musicToggleBtn">Music: On</button>
+        <p class="hint">Controls: Arrow Keys / WASD to move, Space to jump.</p>
+      </section>
+
+      <section id="levelSelectMenu" class="overlay">
+        <h2>Select Level</h2>
+        <div id="levelButtons" class="level-buttons"></div>
+        <button id="backToMainBtn">Back</button>
+      </section>
+
+      <section id="pauseMenu" class="overlay">
+        <h2>Paused</h2>
+        <button id="resumeBtn">Resume</button>
+        <button id="restartBtn">Restart Level</button>
+        <button id="pauseToMenuBtn">Back to Menu</button>
+      </section>
+
+      <section id="gameOverScreen" class="overlay">
+        <h2>Game Over</h2>
+        <p>Final Score: <strong id="finalScoreValue">0</strong></p>
+        <button id="gameOverRestartBtn">Restart</button>
+        <button id="gameOverMenuBtn">Back to Menu</button>
+      </section>
+
+      <section id="victoryScreen" class="overlay">
+        <h2>Congratulations!</h2>
+        <p>You finished all levels.</p>
+        <p>Final Score: <strong id="victoryScoreValue">0</strong></p>
+        <button id="victoryMenuBtn">Back to Menu</button>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
