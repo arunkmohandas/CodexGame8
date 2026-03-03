@@ -3,59 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Canvas Platformer Adventure</title>
+  <title>Missile Grid</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="game-shell">
-    <h1 class="title">Canvas Platformer Adventure</h1>
+  <main id="app" class="app">
+    <!-- Start Screen -->
+    <section id="startScreen" class="screen start-screen active" aria-labelledby="gameTitle">
+      <div class="radar-bg" aria-hidden="true"></div>
+      <div class="panel">
+        <h1 id="gameTitle">Missile Grid</h1>
+        <p class="instructions">
+          Missiles are incoming. Click or tap to fire interceptors and defend the base.
+          Press <strong>Space</strong> for a straight-up shot.
+        </p>
+        <p class="high-score">High Score: <span id="menuHighScore">0</span></p>
+        <button id="playButton" class="btn">Play</button>
+      </div>
+    </section>
 
-    <div id="hud" class="hud hidden" aria-live="polite">
-      <span>Score: <strong id="scoreValue">0</strong></span>
-      <span>Lives: <strong id="livesValue">3</strong></span>
-      <span>Level: <strong id="levelValue">1</strong></span>
-      <button id="pauseBtn" class="tiny-btn">Pause</button>
-    </div>
+    <!-- Game Screen -->
+    <section id="gameScreen" class="screen game-screen" aria-label="Missile Grid gameplay">
+      <header class="hud">
+        <div class="hud-item">Score: <span id="scoreValue">0</span></div>
+        <div class="hud-item">Level: <span id="levelValue">1</span></div>
+        <div class="hud-item stability-wrap">
+          Stability:
+          <div class="stability-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+            <div id="stabilityBar" class="stability-bar"></div>
+          </div>
+        </div>
+        <button id="pauseButton" class="btn btn-small">Pause</button>
+      </header>
 
-    <div class="canvas-wrapper">
-      <canvas id="gameCanvas" width="960" height="540"></canvas>
+      <div id="gameArea" class="game-area">
+        <div id="gridBackdrop" class="grid-backdrop" aria-hidden="true"></div>
+        <div id="entitiesLayer" class="entities-layer"></div>
+        <div id="levelUpNotice" class="level-up">LEVEL UP</div>
+        <div id="shieldDome" class="shield-dome hidden"></div>
+        <div id="base" class="base"></div>
+      </div>
+    </section>
 
-      <section id="mainMenu" class="overlay visible">
-        <h2>Main Menu</h2>
-        <button id="startBtn">Start Game</button>
-        <button id="levelSelectBtn">Level Select</button>
-        <button id="musicToggleBtn">Music: On</button>
-        <p class="hint">Controls: Arrow Keys / WASD to move, Space to jump.</p>
-      </section>
-
-      <section id="levelSelectMenu" class="overlay">
-        <h2>Select Level</h2>
-        <div id="levelButtons" class="level-buttons"></div>
-        <button id="backToMainBtn">Back</button>
-      </section>
-
-      <section id="pauseMenu" class="overlay">
-        <h2>Paused</h2>
-        <button id="resumeBtn">Resume</button>
-        <button id="restartBtn">Restart Level</button>
-        <button id="pauseToMenuBtn">Back to Menu</button>
-      </section>
-
-      <section id="gameOverScreen" class="overlay">
-        <h2>Game Over</h2>
-        <p>Final Score: <strong id="finalScoreValue">0</strong></p>
-        <button id="gameOverRestartBtn">Restart</button>
-        <button id="gameOverMenuBtn">Back to Menu</button>
-      </section>
-
-      <section id="victoryScreen" class="overlay">
-        <h2>Congratulations!</h2>
-        <p>You finished all levels.</p>
-        <p>Final Score: <strong id="victoryScoreValue">0</strong></p>
-        <button id="victoryMenuBtn">Back to Menu</button>
-      </section>
-    </div>
-  </div>
+    <!-- Game Over Screen -->
+    <section id="gameOverScreen" class="screen game-over-screen" aria-labelledby="gameOverTitle">
+      <div class="panel">
+        <h2 id="gameOverTitle">Game Over</h2>
+        <p>Final Score: <span id="finalScore">0</span></p>
+        <p>High Score: <span id="endHighScore">0</span></p>
+        <div class="actions">
+          <button id="restartButton" class="btn">Restart</button>
+          <button id="menuButton" class="btn btn-secondary">Back to Menu</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
